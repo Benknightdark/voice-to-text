@@ -1,0 +1,1 @@
+{"id":"805e29f8-fc11-4ec0-9478-14a7cd520dc4","space":1779,"runtime":"python3.9","name":"voice-text","path":"om0qs1","project":"a0fhmyft","account":"144798365827","region":"ap-southeast-1","deps":["gTTS","idna","fastapi"],"envs":null,"public":true,"log_level":"debug","cron":""}
