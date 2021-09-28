@@ -8,10 +8,6 @@ def convert_text_speach():
     tts.write_to_fp(f)
     f.seek(0)
     return f
-
-
-
-some_file_path = "large-video-file.mp4"
 app = FastAPI()
 
 
