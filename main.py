@@ -9,7 +9,7 @@ from starlette.requests import Request
 
 
 def convert_text_speach(upload_text_data):
-    sentence ='。'.join(upload_text_data['sentence'].split('\n'))
+    sentence = '。'.join(upload_text_data['sentence'].split('\n'))
     lang = upload_text_data['lang']
     tts = gTTS(sentence, lang=lang)  # zh-tw
     f = TemporaryFile()
@@ -21,10 +21,6 @@ def convert_text_speach(upload_text_data):
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
-
-# @app.get("/")
-# async def main():
-#     return  StreamingResponse(convert_text_speach(), media_type="audio/mpeg")
 
 
 @app.get("/", response_class=HTMLResponse)
