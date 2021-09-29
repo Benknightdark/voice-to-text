@@ -8,8 +8,10 @@ from fastapi.responses import StreamingResponse
 from starlette.requests import Request
 
 
-def convert_text_speach():
-    tts = gTTS('我不明白你的問題，請再重複一次', lang='zh-tw')
+def convert_text_speach(upload_text_data):
+    sentence ='。'.join(upload_text_data['sentence'].split('\n'))
+    lang = upload_text_data['lang']
+    tts = gTTS(sentence, lang=lang)  # zh-tw
     f = TemporaryFile()
     tts.write_to_fp(f)
     f.seek(0)
@@ -32,6 +34,5 @@ def http(request: Request):
 
 @app.post("/upload-text")
 async def main(upload_text: Request):
-    text = await upload_text.json()
-    return text
-    # return  StreamingResponse(convert_text_speach(), media_type="audio/mpeg")
+    upload_text_data = await upload_text.json()
+    return StreamingResponse(convert_text_speach(upload_text_data), media_type="audio/mpeg")
